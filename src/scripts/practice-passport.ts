@@ -147,6 +147,26 @@ ${line(o.mid, 72, midFs)}${sub}
   const fileInput = $<HTMLInputElement>('pp-file');
   let current: PracticeKind | null = null;
   let opener: HTMLElement | null = null;
+  let closeTimer = 0;
+  let cardVersion = 0;
+  const modalBackground = new Set<HTMLElement>();
+  function setModalBackground(inert: boolean) {
+    if (!inert) {
+      modalBackground.forEach((element) => { element.inert = false; });
+      modalBackground.clear();
+      return;
+    }
+    // Keep the card's ancestors active and make the rest of the page inert.
+    for (let branch: HTMLElement | null = card; branch?.parentElement; branch = branch.parentElement) {
+      for (const sibling of branch.parentElement.children) {
+        if (sibling instanceof HTMLElement && sibling !== branch && sibling !== scrim && !sibling.inert) {
+          sibling.inert = true;
+          modalBackground.add(sibling);
+        }
+      }
+      if (branch.parentElement === document.body) break;
+    }
+  }
   let keyboard = false;
   document.addEventListener('keydown', (e) => { if (['Tab', 'Enter', ' ', 'Escape'].includes(e.key)) keyboard = true; }, true);
   document.addEventListener('pointerdown', () => { keyboard = false; }, true);
@@ -159,7 +179,7 @@ ${line(o.mid, 72, midFs)}${sub}
 
   function showMedia(c: PracticeChallenge) {
     const s = state[c.id];
-    pic.querySelectorAll('video').forEach((v) => v.remove());
+    pic.querySelectorAll('video').forEach((v) => { v.pause(); v.remove(); });
     img.hidden = false;
     if (s.media === 'file' && s.url) {
       if (c.id === 'photo') { img.src = s.url; img.alt = 'Your practice photo'; }
@@ -197,6 +217,8 @@ ${line(o.mid, 72, midFs)}${sub}
     if (s.pending) answer.querySelectorAll<HTMLInputElement>('input,textarea,button').forEach((el) => { el.disabled = true; });
   }
   function openCard(id: PracticeKind, from: HTMLElement) {
+    clearTimeout(closeTimer);
+    const version = ++cardVersion;
     const c = BY[id];
     const s = state[id];
     current = id; opener = from;
@@ -206,23 +228,44 @@ ${line(o.mid, 72, midFs)}${sub}
     $('pp-card-stamp').innerHTML = s.done ? stampFor(c, true) : '';
     pic.classList.toggle('has-stamp', s.done);
     showMedia(c); renderAnswer(c);
-    card.hidden = false; scrim.hidden = false;
+    card.hidden = false; card.inert = false; scrim.hidden = false;
+    setModalBackground(true);
     card.querySelector<HTMLElement>('.pp-card-scroll')!.scrollTop = 0;
-    requestAnimationFrame(() => requestAnimationFrame(() => { card.classList.add('in'); scrim.classList.add('on'); }));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (version !== cardVersion || !current) return;
+      card.classList.add('in'); scrim.classList.add('on');
+    }));
     (keyboard ? $('pp-card-close') : card).focus({ preventScroll: true });
   }
   function closeCard() {
     if (card.hidden) return;
+    pic.querySelectorAll('video').forEach((v) => v.pause());
+    ++cardVersion;
+    clearTimeout(closeTimer);
     card.classList.remove('in'); scrim.classList.remove('on');
+    card.inert = true;
     const back = opener;
     current = null;
-    later(() => { card.hidden = true; scrim.hidden = true; }, 340);
-    if (back && keyboard) back.focus({ preventScroll: true });
-    else if (document.activeElement instanceof HTMLElement && card.contains(document.activeElement)) document.activeElement.blur();
+    setModalBackground(false);
+    closeTimer = window.setTimeout(() => { card.hidden = true; scrim.hidden = true; }, reduced() ? 0 : 340);
+    back?.focus({ preventScroll: true });
   }
   $('pp-card-close').addEventListener('click', closeCard);
   scrim.addEventListener('click', closeCard);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !card.hidden) closeCard(); });
+  document.addEventListener('keydown', (e) => {
+    if (!current) return;
+    if (e.key === 'Escape') { e.preventDefault(); closeCard(); }
+    if (e.key !== 'Tab') return;
+    const controls = [...card.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), video[controls], [href], [tabindex]:not([tabindex="-1"])')]
+      .filter((element) => element.getClientRects().length > 0);
+    const first = controls[0] || card;
+    const last = controls[controls.length - 1] || card;
+    if (e.shiftKey && (document.activeElement === first || document.activeElement === card)) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && (document.activeElement === last || document.activeElement === card)) {
+      e.preventDefault(); first.focus();
+    }
+  });
   list.addEventListener('click', (e) => {
     const row = (e.target as Element).closest<HTMLElement>('.pp-row');
     if (row) openCard(row.dataset.kind as PracticeKind, row);
@@ -312,10 +355,14 @@ ${line(o.mid, 72, midFs)}${sub}
 
   /* ---------- Start over: phone and detail cards both ---------- */
   $('pp-reset').addEventListener('click', () => {
+    pic.querySelectorAll('video').forEach((v) => { v.pause(); v.remove(); });
+    ++cardVersion;
+    clearTimeout(closeTimer);
     timers.forEach((t) => clearTimeout(t)); timers.clear();
     Object.values(state).forEach(release);
     state = Object.fromEntries(CH.map((c) => [c.id, blank()])) as Record<PracticeKind, State>;
     if (!card.hidden) { card.classList.remove('in'); scrim.classList.remove('on'); card.hidden = true; scrim.hidden = true; current = null; }
+    setModalBackground(false);
     list.querySelectorAll('.pp-row').forEach((r) => { r.classList.remove('done'); r.removeAttribute('aria-label'); r.querySelector('.pp-coin-stamp')!.innerHTML = ''; });
     document.querySelectorAll('.dcard').forEach((k) => { k.classList.remove('is-stamped'); k.querySelector('.dcard-stamp')!.innerHTML = ''; k.querySelector('.dcard-status')!.textContent = 'Not stamped yet.'; });
     countTo(0); paintHeader(0);

@@ -29,14 +29,17 @@ class WebKitCase(unittest.TestCase):
         cls.playwright.stop()
 
     @contextmanager
-    def page_at(self, size, *, javascript=True, block_scripts=False):
+    def page_at(self, size, *, javascript=True, block_scripts=False, motion="reduce"):
         context = self.browser.new_context(
             viewport=dict(zip(("width", "height"), size)),
-            java_script_enabled=javascript, reduced_motion="reduce",
+            java_script_enabled=javascript, reduced_motion=motion,
         )
         errors = []
         def route(request):
-            if (urlsplit(request.request.url).netloc != urlsplit(BASE).netloc
+            url = urlsplit(request.request.url)
+            if url.scheme in ("blob", "data"):
+                request.continue_()
+            elif (url.netloc != urlsplit(BASE).netloc
                     or (block_scripts and request.request.resource_type == "script")):
                 request.abort()
             else:
