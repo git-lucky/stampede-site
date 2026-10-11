@@ -2,8 +2,8 @@
    Palette, type and pattern taken from Tim's Expedition Passport source
    (huntstack-game design/us-design-language @ 53666f9, mockups/passport/template.html). */
 
-@font-face{font-family:"Overpass";src:url("/fonts/Overpass-Black.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
-@font-face{font-family:"Geologica";src:url("/fonts/Geologica-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Overpass";src:url("/fonts/Overpass-Black.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geologica";src:url("/fonts/Geologica-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
   /* Tim's Urban Safari tokens */

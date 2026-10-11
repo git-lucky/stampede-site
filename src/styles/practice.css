@@ -4,8 +4,8 @@
    passportCardStyles) in the Urban Safari skin, derived from blue #174F6B and gold #E9BE4F. */
 
 /* The passport app's own weights (Tim's app loads these from @expo-google-fonts) */
-@font-face{font-family:"Overpass";src:url("/fonts/Overpass-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:"Geologica";src:url("/fonts/Geologica-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Overpass";src:url("/fonts/Overpass-ExtraBold.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Geologica";src:url("/fonts/Geologica-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 
 /* ---------- section: calmer ---------- */
 .how .steps{gap:22px}
