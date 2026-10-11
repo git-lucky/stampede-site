@@ -83,7 +83,7 @@
 .pp-rank{display:flex;align-items:center;padding:0 7px;border-right:1.5px dashed color-mix(in oklab,var(--pp-ink) 40%,transparent);font:900 13px/15px var(--pp-title)}
 .pp-pts{display:flex;align-items:baseline;gap:3px;padding:0 9px 0 8px;align-self:center}
 .pp-pts b{font:900 15px/18px var(--pp-title);font-variant-numeric:tabular-nums}
-.pp-pts small{font:800 8.5px/1 var(--pp-title);letter-spacing:1px;opacity:.7}
+.pp-pts small{font:800 8.5px/1 var(--pp-title);letter-spacing:1px}
 .pp-micro{margin:0 -16px;height:11px;padding:2.5px 16px;background:rgba(0,0,0,.14);overflow:hidden;white-space:nowrap;font:400 4.6px/6px var(--pp-body);letter-spacing:.6px;color:var(--pp-foil);opacity:.7}
 
 /* the challenge list: a coin on the left, the name, the kind's icon and the points */
@@ -107,7 +107,7 @@
 .pp-row.done .pp-pic img{filter:grayscale(1) contrast(.8) brightness(1.12)}
 .pp-row.done .pp-pic::after{background:color-mix(in oklab,var(--pp-paper) 58%,transparent)}
 .pp-row.done .pp-ring{opacity:0}
-.pp-row.done .pp-name,.pp-row.done .pp-kind{color:var(--pp-done)}
+.pp-row.done .pp-name,.pp-row.done .pp-kind{color:var(--pp-soft)}
 
 /* stamps press in (#19 StampPress): down large and tilted, a little give, the ink settles */
 .press{animation:ppPress .42s cubic-bezier(.34,1.56,.64,1) .18s both}
