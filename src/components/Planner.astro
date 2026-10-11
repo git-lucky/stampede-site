@@ -33,7 +33,7 @@ const hint = 'Answer all four questions. Then we’ll open an email to Mike for 
       <svg class="planner-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
     </summary>
     <div class="planner-body">
-      <form class="plan-form" id="plan-form" novalidate data-hint={hint} data-email={contact.email} data-presets={extended ? 'url' : undefined}>
+      <form class="plan-form" id="plan-form" method="post" novalidate data-hint={hint} data-email={contact.email} data-presets={extended ? 'url' : undefined}>
         <fieldset class="q">
           <legend><span class="q-n">1</span>What's the occasion?</legend>
           <div class="opts">
@@ -116,8 +116,9 @@ const hint = 'Answer all four questions. Then we’ll open an email to Mike for 
         )}
 
         <div class="form-foot">
-          <button type="submit" class="btn btn-gold btn-lg">Continue to email</button>
+          <button type="submit" class="btn btn-gold btn-lg" disabled>Continue to email</button>
           <p class="form-hint" id="form-hint">{hint}</p>
+          <p class="form-hint" id="planner-unavailable">The planner needs JavaScript to prepare your email. If it is unavailable, email <a href={`mailto:${contact.email}`}>{contact.email}</a> to plan your expedition.</p>
         </div>
       </form>
 

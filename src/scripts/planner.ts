@@ -200,4 +200,7 @@ if (planForm) {
     }
   }
   paintRoute();
+  // Enable submission only after the email handler and planner are ready.
+  form.querySelector<HTMLButtonElement>('button[type="submit"]')!.disabled = false;
+  $('planner-unavailable').hidden = true;
 }
