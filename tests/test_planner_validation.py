@@ -10,7 +10,11 @@ class PlannerValidation(WebKitCase):
                     page.locator("#planner-fields").evaluate("el => el.open = true")
                     page.locator("#city").fill("")
                     page.locator('#plan-form button[type="submit"]').click()
-                    self.screenshot(page, f"A06-{'home' if path == '/' else 'plan'}-errors", locator=page.locator("#plan-form"))
+                    label = 'home' if path == '/' else 'plan'
+                    page.locator("#plan-form").evaluate("el => el.scrollIntoView({block: 'start'})")
+                    self.screenshot(page, f"A06-{label}-errors-top")
+                    page.locator(".form-foot").evaluate("el => el.scrollIntoView({block: 'end'})")
+                    self.screenshot(page, f"A06-{label}-errors-bottom")
                     hint = page.locator("#form-hint")
                     self.assertEqual(hint.get_attribute("role"), "alert")
                     self.assertIn("Still to answer", hint.inner_text())

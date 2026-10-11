@@ -1,7 +1,6 @@
-from pathlib import Path
 import re
 
-from browser_support import SIZES, WebKitCase
+from browser_support import WebKitCase
 
 
 def luminance(rgb):

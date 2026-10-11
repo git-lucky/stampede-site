@@ -1,8 +1,5 @@
-from pathlib import Path
-import re
-
 from browser_support import SIZES
-from practice_support import PracticeCase, luminance
+from practice_support import PracticeCase
 
 
 class Practice(PracticeCase):

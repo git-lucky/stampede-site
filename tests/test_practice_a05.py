@@ -1,4 +1,3 @@
-from pathlib import Path
 import re
 
 from browser_support import SIZES
@@ -16,6 +15,8 @@ class Practice(PracticeCase):
                 page.locator("#pp-bar").click()
                 page.wait_for_function("document.querySelector('.pp-row.done') !== null")
                 self.screenshot(page, "A05-completed", locator=page.locator(".pp-device"))
+                page.locator(".pp-device").evaluate("el => el.scrollIntoView({block: 'start'})")
+                self.screenshot(page, "A05-completed-page")
                 for selector, background in ((".pp-row.done .pp-name", "#pp"), (".pp-row.done .pp-kind", "#pp"), (".pp-pts small", "#pp-tag")):
                     colors = page.evaluate("""([selector, background]) => ({
                         text: getComputedStyle(document.querySelector(selector)).color,
@@ -28,4 +29,3 @@ class Practice(PracticeCase):
                     mixed = f"rgb({','.join(str(round(f * alpha + b * (1-alpha))) for f, b in zip(foreground, back))})"
                     a, b = luminance(mixed), luminance(colors["background"])
                     self.assertGreaterEqual((max(a,b)+.05)/(min(a,b)+.05), 4.5, colors)
-

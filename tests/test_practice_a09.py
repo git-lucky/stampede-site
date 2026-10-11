@@ -1,8 +1,5 @@
-from pathlib import Path
-import re
-
 from browser_support import SIZES
-from practice_support import PracticeCase, luminance
+from practice_support import PracticeCase
 
 
 class Practice(PracticeCase):
@@ -13,7 +10,7 @@ class Practice(PracticeCase):
                     requests = []
                     page.on("request", lambda request: requests.append(request.url))
                     self.visit(page, "/")
-                    page.locator(".practice").scroll_into_view_if_needed()
+                    page.locator(".practice").evaluate("el => el.scrollIntoView({block: 'start'})")
                     self.screenshot(page, f"A09-practice-closed-{motion}")
                     # The four separate example cards are deliberately unchanged.
                     card_images = {"tower.webp", "kerplunk.webp", "golf.webp", "lot.webp"}
@@ -30,8 +27,13 @@ class Practice(PracticeCase):
                     panel = page.locator("#practice-panel")
                     transition = panel.evaluate("el => getComputedStyle(el).transitionDuration")
                     self.assertEqual(transition == "0s", motion == "reduce")
+                    page.wait_for_timeout(80)
+                    intermediate_height = panel.bounding_box()["height"]
                     page.wait_for_timeout(400)
-                    page.locator(".practice").scroll_into_view_if_needed()
+                    if motion == "no-preference":
+                        self.assertGreater(intermediate_height, 0)
+                        self.assertLess(intermediate_height, panel.bounding_box()["height"])
+                    page.locator(".practice").evaluate("el => el.scrollIntoView({block: 'start'})")
                     self.screenshot(page, f"A09-practice-open-{motion}")
                     self.assertTrue(page.locator("#pp").is_visible())
                     self.assertTrue(page.locator("#pp-you img").evaluate("el => el.complete && el.naturalWidth > 0"))
