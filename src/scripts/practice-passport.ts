@@ -271,6 +271,23 @@ ${line(o.mid, 72, midFs)}${sub}
     if (row) openCard(row.dataset.kind as PracticeKind, row);
   });
 
+  const practiceToggle = $<HTMLButtonElement>('practice-toggle');
+  const practicePanel = $('practice-panel');
+  practiceToggle.addEventListener('click', () => {
+    const open = practiceToggle.getAttribute('aria-expanded') !== 'true';
+    if (!open) closeCard();
+    if (open) {
+      practicePanel.querySelectorAll<HTMLImageElement>('img[data-src]').forEach((image) => {
+        image.src = image.dataset.src!;
+        delete image.dataset.src;
+      });
+    }
+    practiceToggle.setAttribute('aria-expanded', String(open));
+    practicePanel.inert = !open;
+    practicePanel.classList.toggle('is-open', open);
+    practiceToggle.focus({ preventScroll: true });
+  });
+
   answer.addEventListener('input', (e) => {
     const s = current && state[current];
     if (!s || s.pending || s.done) return;
