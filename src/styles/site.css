@@ -67,6 +67,7 @@ ul,ol{margin:0;padding:0}
 /* ---------- header ---------- */
 .site-head{position:sticky;top:0;z-index:20}
 .site-head{background-color:var(--teal);background-image:var(--waves-band,none),var(--grain,none);background-size:320px 220px,200px 200px}
+.site-head :focus-visible{outline-color:var(--gold)}
 .head-in{max-width:var(--wrap);margin-inline:auto;padding:12px var(--gutter);display:flex;align-items:center;gap:20px}
 .wordmark{font:900 17px/1 var(--display);letter-spacing:.32em;text-transform:uppercase;color:var(--foil);text-decoration:none;padding-block:8px;white-space:nowrap}
 .site-nav{margin-left:auto;display:flex;align-items:center;gap:6px}
