@@ -12,7 +12,6 @@ if (planForm) {
   const status = $<HTMLElement>('route-status');
   const hint = $<HTMLElement>('form-hint');
   const groupInput = $<HTMLInputElement>('group');
-  const groupErr = $<HTMLElement>('group-err');
   const result = $<HTMLElement>('result');
   const summary = $<HTMLElement>('summary');
   const copyMsg = $<HTMLElement>('copy-msg');
@@ -23,6 +22,26 @@ if (planForm) {
   type Question = (typeof QUESTIONS)[number];
   const NAMES: Record<Question, string> = { occasion: 'the occasion', style: 'how much we handle', group: 'group size', city: 'the city' };
   let lastAnswered = -1;
+  let submitted = false;
+
+  function fieldError(name: Question, invalid: boolean) {
+    form.querySelectorAll<HTMLInputElement>(`[name="${name}"]`).forEach((input) => {
+      if (invalid) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+    });
+    $(`${name}-err`).hidden = !invalid;
+  }
+
+  function validate() {
+    const a = answered();
+    const missing = QUESTIONS.filter((q) => !a[q]);
+    QUESTIONS.forEach((q) => fieldError(q, !a[q]));
+    hint.classList.toggle('warn', missing.length > 0);
+    hint.textContent = missing.length
+      ? 'Still to answer: ' + missing.map((q) => NAMES[q]).join(', ') + '.'
+      : 'Ready when you are.';
+    return missing;
+  }
 
   const groupValid = () => {
     const n = Number(groupInput.value);
@@ -61,17 +80,12 @@ if (planForm) {
     const name = (e.target as HTMLInputElement).name;
     const i = QUESTIONS.indexOf(name as Question);
     if (i >= 0 && answered()[name as Question]) lastAnswered = i;
-    if (name === 'group' && groupInput.getAttribute('aria-invalid') === 'true' && groupValid()) {
-      groupInput.removeAttribute('aria-invalid');
-      groupErr.hidden = true;
-    }
+    if (submitted) validate();
+    else if (name === 'group' && groupValid()) fieldError('group', false);
     paintRoute();
   });
   groupInput.addEventListener('blur', () => {
-    const bad = groupInput.value.trim() !== '' && !groupValid();
-    if (bad) groupInput.setAttribute('aria-invalid', 'true');
-    else groupInput.removeAttribute('aria-invalid');
-    groupErr.hidden = !bad;
+    fieldError('group', (submitted || groupInput.value.trim() !== '') && !groupValid());
   });
 
   const choose = (name: 'style' | 'occasion', value: string) => {
@@ -79,6 +93,7 @@ if (planForm) {
     if (!radio) return false;
     radio.checked = true;
     lastAnswered = QUESTIONS.indexOf(name);
+    if (submitted) validate();
     return true;
   };
 
@@ -135,15 +150,9 @@ if (planForm) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     plannerFields.open = true;
-    const a = answered();
-    const missing = QUESTIONS.filter((q) => !a[q]);
+    submitted = true;
+    const missing = validate();
     if (missing.length) {
-      if (!a.group && groupInput.value.trim() !== '') {
-        groupInput.setAttribute('aria-invalid', 'true');
-        groupErr.hidden = false;
-      }
-      hint.classList.add('warn');
-      hint.textContent = 'Still to answer: ' + missing.map((q) => NAMES[q]).join(', ') + '.';
       form.querySelector<HTMLElement>(`[name="${missing[0]}"]`)?.focus();
       return;
     }
@@ -166,8 +175,8 @@ if (planForm) {
   document.querySelector('[data-restart]')?.addEventListener('click', () => {
     form.reset();
     lastAnswered = -1;
-    groupErr.hidden = true;
-    groupInput.removeAttribute('aria-invalid');
+    submitted = false;
+    QUESTIONS.forEach((q) => fieldError(q, false));
     hint.classList.remove('warn');
     hint.textContent = defaultHint;
     showForm();
