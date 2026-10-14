@@ -29,5 +29,6 @@ export const detailCards: DetailCard[] = [
     mission: 'The clue reads: “Where the ducks are.” Where do you head next?', points: 50, answer: 'picks', picks: ['The lake', 'The library', 'The bakery'] },
 ];
 
-/** Two sample teams on the practice race track, so your place means something. */
-export const practiceRivals = [125, 275];
+/** Two rivals ahead and one behind the example team: 3rd place with 125 points. */
+export const practicePoints = 125;
+export const practiceRivals = [50, 200, 275];

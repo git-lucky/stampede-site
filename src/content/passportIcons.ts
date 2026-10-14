@@ -1,6 +1,6 @@
 // Font Awesome Free 6 solid icons (CC BY 4.0, https://fontawesome.com/license/free), the set the
 // Expedition Passport player design uses. Paths only, so nothing loads from a CDN.
-export type FaName = "camera" | "clapperboard" | "circle-question" | "list-ul" | "flag-checkered" | "user" | "rotate-left" | "xmark" | "check";
+export type FaName = "camera" | "clapperboard" | "circle-question" | "list-ul" | "flag-checkered" | "user" | "rotate-left" | "xmark" | "check" | "arrow-up";
 export const FA: Record<FaName, { w: number; h: number; d: string }> = {
  "camera": {
   "w": 512,
@@ -41,6 +41,11 @@ export const FA: Record<FaName, { w: number; h: number; d: string }> = {
   "w": 384,
   "h": 512,
   "d": "M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+ },
+ "arrow-up": {
+  "w": 384,
+  "h": 512,
+  "d": "M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
  },
  "check": {
   "w": 448,
