@@ -27,7 +27,7 @@ src/
     home/                   # Homepage sections, the practice hunt and the Meet your guide band
   content/                  # Cities, support FAQ, practice challenges, contact details
   pages/                    # Routes: /, /plan, /support, /cities, /cities/[slug], /privacy, /terms, /poster, /404
-  scripts/                  # Client scripts: header menu and planner
+  scripts/                  # Client scripts: header menu, planner and preview-card highlight
   styles/                   # site.css + pages.css
 public/
   img/                      # Approved mascots and photos (web sizes), pattern tiles, poster QR
@@ -46,7 +46,7 @@ The Hybrid 04 design, with Tim's Expedition Passport palette and type.
 ## Behavior notes
 
 - **Planner** (homepage `#plan` and `/plan/`): four required answers move Atlas along the route. Submitting opens an email draft to mike@urbansafari.app prefilled with the answers; nothing is sent until the visitor sends it. `/plan/` accepts `?city=`, `?style=` (or the older `?package=` slug) and `?occasion=`.
-- **Game preview** (homepage): one static phone in the Expedition Passport look with four sample challenges. The four example challenge cards below are static too. There are no preview controls, uploads or practice-game scripts. Content lives in `src/content/practice.ts`.
+- **Game preview** (homepage): one phone list in the Expedition Passport look, sharing the four detail cards’ titles, pictures, points, kind icons and order. Each row is an anchor link to its card; a small script briefly highlights that card in gold (a steady ring with reduced motion). Links also work without JavaScript. The four example challenge cards below are lossless captures of the real Passport redesign detail screens (PR #186), including each kind’s actual answer controls and bottom action. They use static pictures with descriptive alt text. Mike’s website-only change replaces each picture’s points number with the kind icon on a translucent dark disc; the ring keeps its original size and position. On phones the cards stack so native anchor links reveal each one fully. There are no game dialogs, uploads, answer controls, stamps or reset actions. Content lives in `src/content/practice.ts`; capture provenance is in `docs/passport-detail-captures.md`.
 - **City pages** are generated from `src/content/cities.ts` at `/cities/<slug>/`.
 
 ## Atlas the mascot
