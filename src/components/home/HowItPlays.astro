@@ -1,10 +1,10 @@
 ---
-// "How a hunt plays": the four steps, one practice phone in the Expedition Passport look (the only
-// place you play), and one challenge detail card per kind that gets stamped when that kind is done.
+// "How a hunt plays": a linked phone list and four static Passport detail previews.
 import FaIcon from '@/components/home/FaIcon.astro';
-import { practiceChallenges, detailCards, practiceRivals } from '@/content/practice';
+import { detailCards, practiceRivals } from '@/content/practice';
 import { faSvg } from '@/content/passportIcons';
 import '@/styles/practice.css';
+const totalPoints = detailCards.reduce((sum, challenge) => sum + challenge.points, 0);
 const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
 ---
 <section class="how" id="how" aria-labelledby="how-title">
@@ -28,20 +28,20 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
     </div>
 
     <figure class="practice" aria-labelledby="practice-cap">
-      <p class="preview-label">Try a little Safari</p>
+      <p class="preview-label">A little Safari</p>
       <div class="pp-device">
         <div class="pp-screen" id="pp">
           <span class="pp-notch" aria-hidden="true"></span>
           <div class="pp-band">
             <div class="pp-title-row">
               <p class="pp-title">Practice Safari</p>
-              <span class="pp-progress" id="pp-progress">0 of {practiceChallenges.length}</span>
+              <span class="pp-progress" id="pp-progress">0 of {detailCards.length}</span>
             </div>
             <div class="pp-strip">
               <div class="pp-track" id="pp-track" role="img" aria-label="Race track: your team is 3rd with 0 points">
                 <span class="pp-line"></span>
                 <FaIcon name="flag-checkered" class="pp-finish" />
-                {practiceRivals.map((p) => <span class="pp-tile pp-rival" data-points={p} data-fa="user" set:html={faSvg('user')} />)}
+                {practiceRivals.map((p) => <span class="pp-tile pp-rival" style={`left:calc(${100 * p / totalPoints}% + ${3 - 69 * p / totalPoints}px)`} data-fa="user" set:html={faSvg('user')} />)}
                 <span class="pp-you-ring" id="pp-you-ring"></span>
                 <span class="pp-tile pp-you" id="pp-you"><img src="/img/practice/team-tile.webp" width="120" height="120" alt="" /></span>
               </div>
@@ -51,73 +51,40 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
           </div>
 
           <ul class="pp-list" id="pp-list" role="list">
-            {practiceChallenges.map((c) => (
+            {detailCards.map((c) => (
               <li>
-                <button type="button" class="pp-row" data-kind={c.id} aria-haspopup="dialog">
+                <a class="pp-row" data-kind={c.kind} href={`#kind-${c.kind}`} aria-label={`${c.verb}: ${c.title}, ${c.points} points. See its card.`}>
                   <span class="pp-coin">
-                    <span class="pp-pic"><img src={c.coin} width="240" height="240" alt="" /></span>
+                    <span class="pp-pic"><img src={c.img} width="240" height="240" alt="" /></span>
                     <svg class="pp-ring" viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1" stroke-dasharray="2.5 2.5" /></svg>
-                    <span class="pp-coin-stamp"></span>
                   </span>
                   <span class="pp-text"><span class="pp-name">{c.title}</span><span class="pp-kind"><FaIcon name={c.fa} /><b>{c.points}</b></span></span>
-                </button>
+                </a>
               </li>
             ))}
           </ul>
 
-          <div class="pp-scrim" id="pp-scrim" hidden></div>
-          <div class="pp-card" id="pp-card" hidden role="dialog" aria-modal="true" aria-labelledby="pp-card-title" tabindex="-1">
-            <div class="pp-card-scroll">
-              <div class="pp-card-pic" id="pp-card-pic">
-                <img id="pp-card-img" src={practiceChallenges[0].card} alt="" />
-                <span class="pp-card-grab" aria-hidden="true"></span>
-                <button type="button" class="pp-card-close" id="pp-card-close" aria-label="Close challenge"><FaIcon name="xmark" /></button>
-                <span class="pp-card-ring" aria-hidden="true"><svg viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.5" stroke-dasharray="3 3" /></svg><b id="pp-card-worth">100</b></span>
-                <span class="pp-card-stamp" id="pp-card-stamp" aria-hidden="true"></span>
-              </div>
-              <div class="pp-card-body">
-                <h4 class="pp-card-title" id="pp-card-title"></h4>
-                <p class="pp-card-mission" id="pp-card-mission"></p>
-                <form id="pp-form" novalidate>
-                  <div id="pp-answer"></div>
-                  <p class="pp-feedback" id="pp-feedback" role="status"></p>
-                </form>
-              </div>
-            </div>
-            <div class="pp-card-foot">
-              <button type="submit" form="pp-form" class="pp-bar" id="pp-bar"><FaIcon name="camera" id="pp-bar-icon" /><span id="pp-bar-label">Snap it</span></button>
-            </div>
-          </div>
         </div>
       </div>
       <figcaption class="practice-foot">
-        <p id="practice-cap">A practice hunt in the app. Tap a challenge to play. Nothing is uploaded.</p>
-        <button type="button" class="btn btn-quiet practice-reset" id="pp-reset" disabled><FaIcon name="rotate-left" />Start over</button>
+        <p id="practice-cap">Tap a challenge to see its card.</p>
       </figcaption>
-      <input type="file" id="pp-file" accept="image/*" hidden />
     </figure>
   </div>
 
   <div class="wrap kinds-block">
     <h3 class="kinds-title">Four kinds of challenge, mixed into every hunt</h3>
-    <p class="kinds-invite">A taste of each kind. Finish one on the phone and its card here gets a stamp.</p>
+    <p class="kinds-invite">A taste of each kind: snap, film, answer or pick.</p>
     <ul class="dcards" id="kinds" role="list">
       {detailCards.map((d) => (
-        <li class="dcard" data-kind={d.kind}>
-          <div class="dcard-pic">
-            <img src={d.img} width="720" height="540" alt={d.alt} />
-            <span class="dcard-grab" aria-hidden="true"></span>
-            <span class="dcard-ring" aria-hidden="true"><svg viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.5" stroke-dasharray="3 3" /></svg><b>{d.points}</b></span>
-            <span class="dcard-stamp" aria-hidden="true"></span>
-          </div>
-          <div class="dcard-body">
-            <h4>{d.title}</h4>
-            <p>{d.mission}</p>
-            {d.answer === 'field' && <div class="dcard-answer" aria-hidden="true"><span class="d-label">Your answer</span><span class="d-field">Type your answer</span></div>}
-            {d.answer === 'picks' && <div class="d-picks" aria-hidden="true">{d.picks?.map((p, i) => <span class="d-pick"><i>{'ABC'[i]}</i>{p}</span>)}</div>}
-          </div>
-          <div class="dcard-foot"><span class="d-bar"><FaIcon name={d.fa} />{d.verb}</span></div>
-          <span class="vh dcard-status">Not stamped yet.</span>
+        <li class="dcard" data-kind={d.kind} id={`kind-${d.kind}`}>
+          <img class="dcard-screen" src={`/img/practice/detail-${d.kind}-passport.webp`} width="780" height="1688" alt={`${d.verb}: ${d.title}. ${d.mission}${d.picks ? ` Choices: ${d.picks.join(', ')}.` : ''} Static preview of the Passport challenge screen.`} loading="lazy" decoding="async" />
+          <span class="dcard-kind" aria-hidden="true">
+            <img class="dcard-kind-photo" src={d.img} alt="" loading="lazy" />
+            <span class="dcard-kind-disc"></span>
+            <svg class="dcard-kind-ring" viewBox="0 0 104.5 104.5"><circle cx="52.25" cy="52.25" r="51" fill="none" stroke="white" stroke-opacity=".85" stroke-width="2.5" stroke-dasharray="8.01 8.01" /></svg>
+            <FaIcon name={d.fa} />
+          </span>
         </li>
       ))}
     </ul>
@@ -125,5 +92,5 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
 </section>
 
 <script>
-  import '@/scripts/practice-passport.ts';
+  import '@/scripts/preview-card-highlight';
 </script>
