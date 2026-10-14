@@ -27,7 +27,7 @@ src/
     home/                   # Homepage sections, the practice hunt and the Meet your guide band
   content/                  # Cities, support FAQ, practice challenges, contact details
   pages/                    # Routes: /, /plan, /support, /cities, /cities/[slug], /privacy, /terms, /poster, /404
-  scripts/                  # Client scripts: header menu, planner, practice hunt (practice-passport.ts)
+  scripts/                  # Client scripts: header menu and planner
   styles/                   # site.css + pages.css
 public/
   img/                      # Approved mascots and photos (web sizes), pattern tiles, poster QR
@@ -46,7 +46,7 @@ The Hybrid 04 design, with Tim's Expedition Passport palette and type.
 ## Behavior notes
 
 - **Planner** (homepage `#plan` and `/plan/`): four required answers move Atlas along the route. Submitting opens an email draft to mike@urbansafari.app prefilled with the answers; nothing is sent until the visitor sends it. `/plan/` accepts `?city=`, `?style=` (or the older `?package=` slug) and `?occasion=`.
-- **Practice hunt** (homepage): one practice phone in the Expedition Passport look with four sample challenges, one of each kind (Snap it, Film it, Answer it, Pick one), scored locally. Below it, one challenge detail card per kind gets stamped when that kind is done on the phone. Chosen photos stay in the browser; nothing is uploaded or stored. Content lives in `src/content/practice.ts`.
+- **Game preview** (homepage): one static phone in the Expedition Passport look with four sample challenges. The four example challenge cards below are static too. There are no preview controls, uploads or practice-game scripts. Content lives in `src/content/practice.ts`.
 - **City pages** are generated from `src/content/cities.ts` at `/cities/<slug>/`.
 
 ## Atlas the mascot
