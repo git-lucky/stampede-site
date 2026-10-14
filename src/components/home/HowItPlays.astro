@@ -1,10 +1,10 @@
 ---
 // "How a hunt plays": a phone list paired with four static Passport detail previews.
 import FaIcon from '@/components/home/FaIcon.astro';
-import { detailCards, practicePoints, practiceRivals } from '@/content/practice';
+import { detailCards, onboarding, practicePoints, practiceRivals } from '@/content/practice';
 import { faSvg } from '@/content/passportIcons';
 import '@/styles/practice.css';
-const totalPoints = detailCards.reduce((sum, challenge) => sum + challenge.points, 0);
+const totalPoints = onboarding.points + detailCards.reduce((sum, challenge) => sum + challenge.points, 0);
 const progress = practicePoints / totalPoints;
 const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
 ---
@@ -38,17 +38,19 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
           <div class="pp-band">
             <div class="pp-title-row">
               <p class="pp-title" id="practice-title">A little Safari</p>
-              <span class="pp-progress" id="pp-progress">2 of {detailCards.length}</span>
+              <span class="pp-progress" id="pp-progress">{onboarding.steps} of {onboarding.steps + detailCards.length}</span>
             </div>
             <div class="pp-strip">
-              <div class="pp-track" id="pp-track" role="img" aria-label="Race track: your team is 3rd with 125 points">
+              <div class="pp-track" id="pp-track" role="img" aria-label={`Race track: your team is 2nd with ${practicePoints} points`}>
                 <span class="pp-line"></span>
                 <FaIcon name="flag-checkered" class="pp-finish" />
-                {practiceRivals.map((p) => <span class="pp-tile pp-rival" style={`left:calc(${100 * p / totalPoints}% + ${3 - 69 * p / totalPoints}px)`} data-fa="user" set:html={faSvg('user')} />)}
+                {practiceRivals.map((r) => r.img
+                  ? <span class="pp-tile pp-rival pp-rival-team" style={`left:calc(${100 * r.points / totalPoints}% + ${3 - 69 * r.points / totalPoints}px)`}><img src={r.img} width="120" height="120" alt="" /></span>
+                  : <span class="pp-tile pp-rival" style={`left:calc(${100 * r.points / totalPoints}% + ${3 - 69 * r.points / totalPoints}px)`} data-fa="user" set:html={faSvg('user')} />)}
                 <span class="pp-you-ring" id="pp-you-ring" style={`left:calc(${100 * progress}% + ${3 - 69 * progress}px)`}></span>
                 <span class="pp-tile pp-you" id="pp-you" style={`left:calc(${100 * progress}% + ${3 - 69 * progress}px)`}><img src="/img/practice/team-tile.webp" width="120" height="120" alt="" /></span>
               </div>
-              <div class="pp-tag" id="pp-tag" style={`left:calc(${100 * progress}% - ${69 * progress}px)`}><span class="pp-rank" id="pp-rank">3RD</span><span class="pp-pts"><b id="pp-score">{practicePoints}</b><small>PTS</small></span></div>
+              <div class="pp-tag" id="pp-tag" style={`left:calc(${100 * progress}% - ${69 * progress}px)`}><span class="pp-rank" id="pp-rank">2ND</span><span class="pp-pts"><b id="pp-score">{practicePoints}</b><small>PTS</small></span></div>
             </div>
             <p class="pp-micro" aria-hidden="true">{MICRO}</p>
           </div>
