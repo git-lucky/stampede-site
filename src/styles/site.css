@@ -2,8 +2,8 @@
    Palette, type and pattern taken from Tim's Expedition Passport source
    (huntstack-game design/us-design-language @ 53666f9, mockups/passport/template.html). */
 
-@font-face{font-family:"Overpass";src:url("/fonts/Overpass-Black.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
-@font-face{font-family:"Geologica";src:url("/fonts/Geologica-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Overpass";src:url("/fonts/Overpass-Black.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geologica";src:url("/fonts/Geologica-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
   /* Tim's Urban Safari tokens */
@@ -34,7 +34,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--print);color:var(--ink);font:400 17px/1.6 var(--text);font-synthesis:none;overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 h1,h2,h3{font-family:var(--display);font-weight:900;margin:0;text-wrap:balance;color:var(--teal-deep);letter-spacing:-.005em}
@@ -67,6 +67,7 @@ ul,ol{margin:0;padding:0}
 /* ---------- header ---------- */
 .site-head{position:sticky;top:0;z-index:20}
 .site-head{background-color:var(--teal);background-image:var(--waves-band,none),var(--grain,none);background-size:320px 220px,200px 200px}
+.site-head :focus-visible{outline-color:var(--gold)}
 .head-in{max-width:var(--wrap);margin-inline:auto;padding:12px var(--gutter);display:flex;align-items:center;gap:20px}
 .wordmark{font:900 17px/1 var(--display);letter-spacing:.32em;text-transform:uppercase;color:var(--foil);text-decoration:none;padding-block:8px;white-space:nowrap}
 .site-nav{margin-left:auto;display:flex;align-items:center;gap:6px}
@@ -299,6 +300,7 @@ input[aria-invalid=true]{border-color:var(--red)}
  .head-in{position:relative}
 }
 @media(max-width:560px){
+ html{scroll-padding-top:64px}
  .head-in{gap:10px}
  .header-brand{gap:8px;min-width:0}
  .header-brand-name{font-size:13px;letter-spacing:.13em}

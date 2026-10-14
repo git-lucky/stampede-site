@@ -33,43 +33,46 @@ const hint = 'Answer all four questions. Then we’ll open an email to Mike for 
       <svg class="planner-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
     </summary>
     <div class="planner-body">
-      <form class="plan-form" id="plan-form" novalidate data-hint={hint} data-email={contact.email} data-presets={extended ? 'url' : undefined}>
+      <form class="plan-form" id="plan-form" method="post" novalidate data-hint={hint} data-email={contact.email} data-presets={extended ? 'url' : undefined}>
         <fieldset class="q">
           <legend><span class="q-n">1</span>What's the occasion?</legend>
           <div class="opts">
-            <label class="opt"><input type="radio" name="occasion" value="Company outing" /><span>Company outing</span></label>
-            <label class="opt"><input type="radio" name="occasion" value="Celebration" /><span>Celebration</span></label>
-            <label class="opt"><input type="radio" name="occasion" value="Friends and family" /><span>Friends and family</span></label>
+            <label class="opt"><input type="radio" name="occasion" required aria-describedby="occasion-err" value="Company outing" /><span>Company outing</span></label>
+            <label class="opt"><input type="radio" name="occasion" required aria-describedby="occasion-err" value="Celebration" /><span>Celebration</span></label>
+            <label class="opt"><input type="radio" name="occasion" required aria-describedby="occasion-err" value="Friends and family" /><span>Friends and family</span></label>
           </div>
+          <p class="err" id="occasion-err" hidden>Choose an occasion.</p>
         </fieldset>
 
         <fieldset class="q">
           <legend><span class="q-n">2</span>How much should we handle?</legend>
           <div class="opts">
-            <label class="opt"><input type="radio" name="style" value="Scout" /><span>Scout<small>You play on your own schedule</small></span></label>
-            <label class="opt"><input type="radio" name="style" value="Remote Expedition" /><span>Remote Expedition<small>A host joins virtually</small></span></label>
-            <label class="opt"><input type="radio" name="style" value="Guided Expedition" /><span>Guided Expedition<small>The day handled for you</small></span></label>
-            <label class="opt"><input type="radio" name="style" value="Not sure yet" /><span>Not sure yet<small>Help us choose</small></span></label>
+            <label class="opt"><input type="radio" name="style" required aria-describedby="style-err" value="Scout" /><span>Scout<small>You play on your own schedule</small></span></label>
+            <label class="opt"><input type="radio" name="style" required aria-describedby="style-err" value="Remote Expedition" /><span>Remote Expedition<small>A host joins virtually</small></span></label>
+            <label class="opt"><input type="radio" name="style" required aria-describedby="style-err" value="Guided Expedition" /><span>Guided Expedition<small>The day handled for you</small></span></label>
+            <label class="opt"><input type="radio" name="style" required aria-describedby="style-err" value="Not sure yet" /><span>Not sure yet<small>Help us choose</small></span></label>
           </div>
+          <p class="err" id="style-err" hidden>Choose how much you would like us to handle.</p>
         </fieldset>
 
         <div class="q-row">
           <div class="q">
             <label for="group" class="q-label"><span class="q-n">3</span>About how many people?</label>
-            <input id="group" name="group" type="number" inputmode="numeric" min="2" max="2000" placeholder="For example, 24" aria-describedby="group-err" />
-            <p class="err" id="group-err" hidden>Enter a number of people, 2 or more.</p>
+            <input id="group" name="group" required type="number" inputmode="numeric" min="2" max="2000" placeholder="For example, 24" aria-describedby="group-err" />
+            <p class="err" id="group-err" hidden>Enter a whole number of people from 2 to 2,000.</p>
           </div>
           <div class="q">
             <label for="city" class="q-label"><span class="q-n">4</span>Which city?</label>
             {extended ? (
               <>
-                <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="City or town" maxlength="100" list="city-suggestions" aria-describedby="city-help" />
+                <input id="city" name="city" required type="text" autocomplete="address-level2" placeholder="City or town" maxlength="100" list="city-suggestions" aria-describedby="city-help city-err" />
                 <datalist id="city-suggestions">{priorityCities.map((c) => <option value={`${c.name}, ${c.state}`} />)}</datalist>
                 <p class="field-help" id="city-help" hidden>We’ve started with the city you were viewing. You can change it.</p>
               </>
             ) : (
-              <input id="city" name="city" type="text" autocomplete="address-level2" placeholder="City or town" maxlength="100" />
+              <input id="city" name="city" required type="text" autocomplete="address-level2" placeholder="City or town" maxlength="100" aria-describedby="city-err" />
             )}
+            <p class="err" id="city-err" hidden>Enter a city or town.</p>
           </div>
         </div>
 
@@ -116,8 +119,9 @@ const hint = 'Answer all four questions. Then we’ll open an email to Mike for 
         )}
 
         <div class="form-foot">
-          <button type="submit" class="btn btn-gold btn-lg">Continue to email</button>
-          <p class="form-hint" id="form-hint">{hint}</p>
+          <button type="submit" class="btn btn-gold btn-lg" disabled>Continue to email</button>
+          <p class="form-hint" id="form-hint" role="alert" aria-atomic="true">{hint}</p>
+          <p class="form-hint" id="planner-unavailable">The planner needs JavaScript to prepare your email. If it is unavailable, email <a href={`mailto:${contact.email}`}>{contact.email}</a> to plan your expedition.</p>
         </div>
       </form>
 

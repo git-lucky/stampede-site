@@ -28,7 +28,32 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+      - name: Check Astro templates and TypeScript
+        run: pnpm dlx @astrojs/check@0.9.10 --minimumFailingSeverity warning
       - run: pnpm build
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install WebKit smoke tooling
+        run: |
+          python -m pip install playwright==1.63.0
+          python -m playwright install --with-deps webkit
+
+      - name: Check pages and planner in WebKit
+        env:
+          BASE_URL: http://127.0.0.1:4321
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: |
+          pnpm exec astro preview --host 127.0.0.1 --port 4321 > "$RUNNER_TEMP/site-preview.log" 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid"' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent "$BASE_URL/" > /dev/null; then break; fi
+            sleep 1
+          done
+          python -m unittest discover -s tests -v
 
       - uses: cloudflare/wrangler-action@v3
         with:

@@ -27,8 +27,15 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
       </ol>
     </div>
 
-    <figure class="practice" aria-labelledby="practice-cap">
-      <p class="preview-label">Try a little Safari</p>
+    <div class="practice">
+      <button type="button" class="btn btn-line practice-toggle" id="practice-toggle" aria-expanded="false" aria-controls="practice-panel">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3" /><path d="M10 5h4M11 19h2" /></svg>
+        <span>Try a practice challenge</span>
+        <svg class="practice-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+      </button>
+      <div class="practice-panel" id="practice-panel" inert>
+        <div class="practice-panel-inner">
+          <figure class="practice-content" aria-labelledby="practice-cap">
       <div class="pp-device">
         <div class="pp-screen" id="pp">
           <span class="pp-notch" aria-hidden="true"></span>
@@ -43,7 +50,7 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
                 <FaIcon name="flag-checkered" class="pp-finish" />
                 {practiceRivals.map((p) => <span class="pp-tile pp-rival" data-points={p} data-fa="user" set:html={faSvg('user')} />)}
                 <span class="pp-you-ring" id="pp-you-ring"></span>
-                <span class="pp-tile pp-you" id="pp-you"><img src="/img/practice/team-tile.webp" width="120" height="120" alt="" /></span>
+                <span class="pp-tile pp-you" id="pp-you"><img data-src="/img/practice/team-tile.webp" width="120" height="120" alt="" /></span>
               </div>
               <div class="pp-tag" id="pp-tag"><span class="pp-rank" id="pp-rank">3RD</span><span class="pp-pts"><b id="pp-score">0</b><small>PTS</small></span></div>
             </div>
@@ -55,7 +62,7 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
               <li>
                 <button type="button" class="pp-row" data-kind={c.id} aria-haspopup="dialog">
                   <span class="pp-coin">
-                    <span class="pp-pic"><img src={c.coin} width="240" height="240" alt="" /></span>
+                    <span class="pp-pic"><img data-src={c.coin} width="240" height="240" alt="" /></span>
                     <svg class="pp-ring" viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1" stroke-dasharray="2.5 2.5" /></svg>
                     <span class="pp-coin-stamp"></span>
                   </span>
@@ -69,7 +76,7 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
           <div class="pp-card" id="pp-card" hidden role="dialog" aria-modal="true" aria-labelledby="pp-card-title" tabindex="-1">
             <div class="pp-card-scroll">
               <div class="pp-card-pic" id="pp-card-pic">
-                <img id="pp-card-img" src={practiceChallenges[0].card} alt="" />
+                <img id="pp-card-img" alt="" />
                 <span class="pp-card-grab" aria-hidden="true"></span>
                 <button type="button" class="pp-card-close" id="pp-card-close" aria-label="Close challenge"><FaIcon name="xmark" /></button>
                 <span class="pp-card-ring" aria-hidden="true"><svg viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.5" stroke-dasharray="3 3" /></svg><b id="pp-card-worth">100</b></span>
@@ -95,7 +102,10 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
         <button type="button" class="btn btn-quiet practice-reset" id="pp-reset" disabled><FaIcon name="rotate-left" />Start over</button>
       </figcaption>
       <input type="file" id="pp-file" accept="image/*" hidden />
-    </figure>
+          </figure>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="wrap kinds-block">

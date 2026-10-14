@@ -4,12 +4,22 @@
    passportCardStyles) in the Urban Safari skin, derived from blue #174F6B and gold #E9BE4F. */
 
 /* The passport app's own weights (Tim's app loads these from @expo-google-fonts) */
-@font-face{font-family:"Overpass";src:url("/fonts/Overpass-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:"Geologica";src:url("/fonts/Geologica-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Overpass";src:url("/fonts/Overpass-ExtraBold.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Geologica";src:url("/fonts/Geologica-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 
 /* ---------- section: calmer ---------- */
 .how .steps{gap:22px}
 .practice{margin:0;width:340px;max-width:100%;justify-self:end}
+.practice-toggle{width:100%;gap:10px;text-align:left}
+.practice-toggle span{flex:1}
+.practice-toggle svg{width:20px;height:20px;flex:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.practice-chevron{transition:transform .32s ease}
+.practice-toggle[aria-expanded=true] .practice-chevron{transform:rotate(180deg)}
+.practice-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease}
+.practice-panel.is-open{grid-template-rows:1fr}
+.practice-panel-inner{min-height:0;overflow:hidden;visibility:hidden}
+.practice-panel.is-open .practice-panel-inner{visibility:visible}
+.practice-content{margin:0;padding-top:18px}
 .practice .preview-label{margin:0 0 12px}
 .practice-foot{display:flex;align-items:flex-start;justify-content:space-between;gap:10px 16px;margin-top:14px}
 .practice-foot p{font-size:14px;line-height:1.5;color:var(--ink-2);max-width:24em}
@@ -83,7 +93,7 @@
 .pp-rank{display:flex;align-items:center;padding:0 7px;border-right:1.5px dashed color-mix(in oklab,var(--pp-ink) 40%,transparent);font:900 13px/15px var(--pp-title)}
 .pp-pts{display:flex;align-items:baseline;gap:3px;padding:0 9px 0 8px;align-self:center}
 .pp-pts b{font:900 15px/18px var(--pp-title);font-variant-numeric:tabular-nums}
-.pp-pts small{font:800 8.5px/1 var(--pp-title);letter-spacing:1px;opacity:.7}
+.pp-pts small{font:800 8.5px/1 var(--pp-title);letter-spacing:1px}
 .pp-micro{margin:0 -16px;height:11px;padding:2.5px 16px;background:rgba(0,0,0,.14);overflow:hidden;white-space:nowrap;font:400 4.6px/6px var(--pp-body);letter-spacing:.6px;color:var(--pp-foil);opacity:.7}
 
 /* the challenge list: a coin on the left, the name, the kind's icon and the points */
@@ -107,7 +117,7 @@
 .pp-row.done .pp-pic img{filter:grayscale(1) contrast(.8) brightness(1.12)}
 .pp-row.done .pp-pic::after{background:color-mix(in oklab,var(--pp-paper) 58%,transparent)}
 .pp-row.done .pp-ring{opacity:0}
-.pp-row.done .pp-name,.pp-row.done .pp-kind{color:var(--pp-done)}
+.pp-row.done .pp-name,.pp-row.done .pp-kind{color:var(--pp-soft)}
 
 /* stamps press in (#19 StampPress): down large and tilted, a little give, the ink settles */
 .press{animation:ppPress .42s cubic-bezier(.34,1.56,.64,1) .18s both}
