@@ -1,5 +1,5 @@
 ---
-// "How a hunt plays": a linked phone list and four static Passport detail previews.
+// "How a hunt plays": a phone list paired with four static Passport detail previews.
 import FaIcon from '@/components/home/FaIcon.astro';
 import { detailCards, practiceRivals } from '@/content/practice';
 import { faSvg } from '@/content/passportIcons';
@@ -27,6 +27,9 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
       </ol>
     </div>
 
+  </div>
+
+  <div class="wrap challenge-preview">
     <figure class="practice" aria-labelledby="practice-cap">
       <p class="preview-label">A little Safari</p>
       <div class="pp-device">
@@ -53,13 +56,13 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
           <ul class="pp-list" id="pp-list" role="list">
             {detailCards.map((c) => (
               <li>
-                <a class="pp-row" data-kind={c.kind} href={`#kind-${c.kind}`} aria-label={`${c.verb}: ${c.title}, ${c.points} points. See its card.`}>
+                <button type="button" class="pp-row" data-kind={c.kind} id={`row-${c.kind}`} aria-label={`${c.verb}: ${c.title}, ${c.points} points. Highlight its detail card.`}>
                   <span class="pp-coin">
                     <span class="pp-pic"><img src={c.img} width="240" height="240" alt="" /></span>
                     <svg class="pp-ring" viewBox="0 0 76 76" aria-hidden="true"><circle cx="38" cy="38" r="34" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1" stroke-dasharray="2.5 2.5" /></svg>
                   </span>
                   <span class="pp-text"><span class="pp-name">{c.title}</span><span class="pp-kind"><FaIcon name={c.fa} /><b>{c.points}</b></span></span>
-                </a>
+                </button>
               </li>
             ))}
           </ul>
@@ -67,17 +70,17 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
         </div>
       </div>
       <figcaption class="practice-foot">
-        <p id="practice-cap">Tap a challenge to see its card.</p>
+        <p id="practice-cap">Tap a challenge or card to highlight its match.</p>
       </figcaption>
     </figure>
-  </div>
 
-  <div class="wrap kinds-block">
+    <div class="kinds-block">
     <h3 class="kinds-title">Four kinds of challenge, mixed into every hunt</h3>
     <p class="kinds-invite">A taste of each kind: snap, film, answer or pick.</p>
     <ul class="dcards" id="kinds" role="list">
       {detailCards.map((d) => (
-        <li class="dcard" data-kind={d.kind} id={`kind-${d.kind}`}>
+        <li>
+          <button type="button" class="dcard" data-kind={d.kind} id={`kind-${d.kind}`} aria-label={`${d.verb}: ${d.title}. Highlight its phone row.`}>
           <img class="dcard-screen" src={`/img/practice/detail-${d.kind}-passport.webp`} width="780" height="1688" alt={`${d.verb}: ${d.title}. ${d.mission}${d.picks ? ` Choices: ${d.picks.join(', ')}.` : ''} Static preview of the Passport challenge screen.`} loading="lazy" decoding="async" />
           <span class="dcard-kind" aria-hidden="true">
             <img class="dcard-kind-photo" src={d.img} alt="" loading="lazy" />
@@ -85,9 +88,11 @@ const MICRO = 'URBANSAFARIEXPEDITIONPASSPORT'.repeat(8);
             <svg class="dcard-kind-ring" viewBox="0 0 104.5 104.5"><circle cx="52.25" cy="52.25" r="51" fill="none" stroke="white" stroke-opacity=".85" stroke-width="2.5" stroke-dasharray="8.01 8.01" /></svg>
             <FaIcon name={d.fa} />
           </span>
+          </button>
         </li>
       ))}
     </ul>
+    </div>
   </div>
 </section>
 

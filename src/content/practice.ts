@@ -3,7 +3,7 @@ import type { FaName } from './passportIcons';
 
 export type PracticeKind = 'photo' | 'video' | 'trivia' | 'choice';
 
-/** One real example of each kind, shown below the phone as a challenge's details (not playable). */
+/** One real example of each kind, shown beside the phone as a challenge's details (not playable). */
 export interface DetailCard {
   kind: PracticeKind;
   fa: FaName;

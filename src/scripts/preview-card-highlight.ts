@@ -1,20 +1,20 @@
-// Native anchor links handle navigation, including without JavaScript.
-// The only enhancement is a brief highlight on the matching static card.
+// Both controls are buttons: activation only highlights their counterpart.
+// No scrolling, navigation, focus transfer or game interaction.
 let active: HTMLElement | null = null;
 let clearHighlight: ReturnType<typeof setTimeout> | undefined;
 
-for (const link of document.querySelectorAll<HTMLAnchorElement>('.pp-row[href^="#kind-"]')) {
-  link.addEventListener('click', () => {
-    const card = document.getElementById(link.hash.slice(1));
-    if (!card) return;
+for (const button of document.querySelectorAll<HTMLButtonElement>('.pp-row, .dcard')) {
+  button.addEventListener('click', () => {
+    const prefix = button.classList.contains('pp-row') ? 'kind' : 'row';
+    const match = document.getElementById(`${prefix}-${button.dataset.kind}`)!;
     active?.classList.remove('is-highlighted');
     clearTimeout(clearHighlight);
-    // Restart the glow when the same card is selected again.
-    void card.offsetWidth;
-    card.classList.add('is-highlighted');
-    active = card;
+    // Restart the glow when the same match is selected again.
+    void match.offsetWidth;
+    match.classList.add('is-highlighted');
+    active = match;
     clearHighlight = setTimeout(() => {
-      card.classList.remove('is-highlighted');
+      match.classList.remove('is-highlighted');
       active = null;
     }, 2200);
   });
