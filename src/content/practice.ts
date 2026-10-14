@@ -1,43 +1,9 @@
-// The homepage practice hunt, in the Expedition Passport look. Local only: nothing is uploaded or sent.
-// The phone's four challenges introduce Urban Safari and Mike, one of each kind. Facts used come only
-// from the site and Mike's brief: Urban Safari is Mike's company and he guides the hunts; team
-// scavenger hunts in your own city; each team plays from one phone; challenges add points and move you
-// along the race track; WooTown Scavengers was played September 11 to 13, 2026 in Woodward, Oklahoma
-// (the photos are from it).
+// The phone list and static detail captures share these four examples, in this order.
 import type { FaName } from './passportIcons';
 
 export type PracticeKind = 'photo' | 'video' | 'trivia' | 'choice';
 
-export interface PracticeChallenge {
-  id: PracticeKind;
-  fa: FaName;
-  verb: string;
-  title: string;
-  points: number;
-  /** The card's big picture (4:3) and the row's coin (square). */
-  card: string;
-  coin: string;
-  mission: string;
-  label?: string;
-  placeholder?: string;
-  picks?: string[];
-  right?: number;
-}
-
-export const practiceChallenges: PracticeChallenge[] = [
-  { id: 'photo', fa: 'camera', verb: 'Snap it', title: 'Meet your guide', points: 100, card: '/img/practice/guide-card.webp', coin: '/img/practice/guide-coin.webp',
-    mission: 'This is Mike. Urban Safari is his company, and he guides the hunts. Say hi the Safari way: snap a photo of your team waving back.' },
-  { id: 'trivia', fa: 'circle-question', verb: 'Answer it', title: 'Find your bearings', points: 50, card: '/img/practice/start-card.webp', coin: '/img/practice/start-coin.webp',
-    label: 'Your answer', placeholder: 'Type the town',
-    mission: 'These photos are from WooTown Scavengers, a real Urban Safari hunt played September 11 to 13, 2026. Which Oklahoma town was it played in? Hint: it’s in the name.' },
-  { id: 'choice', fa: 'list-ul', verb: 'Pick one', title: 'How the race works', points: 50, card: '/img/practice/pose-card.webp', coin: '/img/practice/pose-coin.webp',
-    mission: 'Each team plays from one phone. What moves your team along the race track?',
-    picks: ['Finishing challenges', 'Picking the best team name', 'Walking the farthest'], right: 0 },
-  { id: 'video', fa: 'clapperboard', verb: 'Film it', title: 'Ten seconds as a tour guide', points: 100, card: '/img/practice/spot-card.webp', coin: '/img/practice/spot-coin.webp',
-    mission: 'Introduce an ordinary place as if it were the most extraordinary stop on your expedition. Give us ten seconds of your best tour-guide voice.' },
-];
-
-/** One real example of each kind, shown below the phone as a challenge's details (not playable). */
+/** One real example of each kind, shown beside the phone as a challenge's details (not playable). */
 export interface DetailCard {
   kind: PracticeKind;
   fa: FaName;
@@ -63,5 +29,6 @@ export const detailCards: DetailCard[] = [
     mission: 'The clue reads: “Where the ducks are.” Where do you head next?', points: 50, answer: 'picks', picks: ['The lake', 'The library', 'The bakery'] },
 ];
 
-/** Two sample teams on the practice race track, so your place means something. */
-export const practiceRivals = [125, 275];
+/** Two rivals ahead and one behind the example team: 3rd place with 125 points. */
+export const practicePoints = 125;
+export const practiceRivals = [50, 200, 275];

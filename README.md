@@ -27,7 +27,7 @@ src/
     home/                   # Homepage sections, the practice hunt and the Meet your guide band
   content/                  # Cities, support FAQ, practice challenges, contact details
   pages/                    # Routes: /, /plan, /support, /cities, /cities/[slug], /privacy, /terms, /poster, /404
-  scripts/                  # Client scripts: header menu, planner, practice hunt (practice-passport.ts)
+  scripts/                  # Client scripts: header menu, planner and preview-card highlight
   styles/                   # site.css + pages.css
 public/
   img/                      # Approved mascots and photos (web sizes), pattern tiles, poster QR
@@ -46,7 +46,7 @@ The Hybrid 04 design, with Tim's Expedition Passport palette and type.
 ## Behavior notes
 
 - **Planner** (homepage `#plan` and `/plan/`): four required answers move Atlas along the route. Submitting opens an email draft to mike@urbansafari.app prefilled with the answers; nothing is sent until the visitor sends it. `/plan/` accepts `?city=`, `?style=` (or the older `?package=` slug) and `?occasion=`.
-- **Practice hunt** (homepage): one practice phone in the Expedition Passport look with four sample challenges, one of each kind (Snap it, Film it, Answer it, Pick one), scored locally. Below it, one challenge detail card per kind gets stamped when that kind is done on the phone. Chosen photos stay in the browser; nothing is uploaded or stored. Content lives in `src/content/practice.ts`.
+- **Game preview** (homepage): one “A little Safari” phone list showing 0 of 4 and 3rd place with 125 points (two rivals ahead, one behind), sharing the four detail cards’ titles, pictures, points, kind icons and order. Rows and detail cards are buttons: activating either briefly highlights its counterpart with a rounded gold glow, without scrolling, changing the URL or moving focus. Enter and Space work too; reduced motion uses a steady ring. Without JavaScript the preview stays readable and the buttons do nothing. The four example challenge cards are lossless captures of the real Passport redesign detail screens (PR #186), including each kind’s actual answer controls and bottom action. They use static pictures with descriptive alt text. Mike’s website-only change replaces each picture’s points number with the kind icon on a translucent dark disc; the ring keeps its original size and position. This marketing version covers the pictured close/grab controls with clean photos and shows the two answer actions in solid blue with white icons/text; those decorations do not submit anything. On desktop the phone and four full cards share one viewport at 1440×900 and 1280×800. Phones keep the stacked layout; activation still never scrolls. There are no game dialogs, uploads, answer controls, stamps or reset actions. Content lives in `src/content/practice.ts`; capture provenance is in `docs/passport-detail-captures.md`.
 - **City pages** are generated from `src/content/cities.ts` at `/cities/<slug>/`.
 
 ## Atlas the mascot
