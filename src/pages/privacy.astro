@@ -6,7 +6,7 @@ import LegalPage from '@/components/LegalPage.astro';
   title="Privacy"
   description="How Urban Safari collects, uses, and protects the information our players and customers share with us."
   heading="Privacy Policy"
-  updated="Last updated · October 7, 2026"
+  updated="Last updated · October 21, 2026"
 >
   <p>
     itsybits (“we”, “our”, “us”) builds and operates the Urban Safari app.
@@ -29,32 +29,97 @@ import LegalPage from '@/components/LegalPage.astro';
     your team. Teammates and hosts can see it; that's the point.
   </p>
 
-  <h3>Anonymous usage data (via PostHog)</h3>
-  <p>We track, in aggregate and without identifying you personally:</p>
+  <h3>Usage data (via PostHog)</h3>
+  <p>
+    We use PostHog to see how the app gets used. This data is linked to a
+    team identifier (something like “team_” plus a number), not to your
+    name or email. We don't use it to identify you personally. It isn't
+    anonymous, though, because it's tied to your team's activity.
+  </p>
+  <p>We track:</p>
   <ul>
     <li>Which screens you visit in the app</li>
     <li>Which features you use</li>
     <li>App lifecycle events (open, close, foreground, background)</li>
+    <li>Which organization and game you're playing, and how your team joined</li>
+    <li>
+      Challenge activity: which challenge and what type, the points earned,
+      and whether an answer was correct (never the answer itself)
+    </li>
+    <li>Upload sizes and durations, and the app version</li>
   </ul>
+  <p>
+    We never send answer text, email addresses, phone numbers, rejoin
+    codes, or photo and video content in these events.
+  </p>
+  <p>
+    PostHog stores this data in the United States. We don't use cookies for
+    it. The identifier lives in your device's local storage.
+  </p>
   <p>It helps us figure out what's working and what's busted.</p>
 
-  <h3>Crash data (via Sentry)</h3>
+  <h3>Error data (via Sentry)</h3>
   <p>
-    When something breaks, we collect the crash report so we can fix it.
+    When something breaks, we collect an error report so we can fix it.
     That includes:
   </p>
   <ul>
-    <li>Device type and OS version</li>
+    <li>Device or browser type, and OS version where available</li>
     <li>App version</li>
     <li>Error logs and stack traces</li>
-    <li>IP address</li>
+    <li>
+      Performance traces (how long things take) for about 10% of sessions
+    </li>
   </ul>
+  <p>
+    In our native apps, error reports also include your IP address. On the
+    web, we don't collect IP addresses, cookies, or request bodies.
+  </p>
+
+  <h2>Session recordings and diagnostics</h2>
+  <p>
+    On top of the usage data above, the web player app collects a few
+    diagnostics. They help us see where people get stuck and why things
+    break.
+  </p>
+
+  <h3>Session recordings</h3>
+  <p>
+    PostHog records replays of what happens on screen in the app: the
+    screens you see and where you tap.
+  </p>
+  <p>
+    All text inputs are masked, so what you type is not recorded. That
+    includes your typed answers and captions. Photos and videos are not
+    recorded either.
+  </p>
+  <p>Replays are kept for 30 days.</p>
+
+  <h3>Clicks and heatmaps</h3>
+  <p>
+    We track taps and clicks to build heatmaps of where people tap. That
+    includes “dead clicks,” where you tap something and nothing happens.
+    It points us to buttons that are confusing or broken.
+  </p>
+
+  <h3>Performance data</h3>
+  <p>
+    We measure how fast pages load and respond (often called “web
+    vitals”), so we can spot slow spots.
+  </p>
+
+  <h3>Console logs</h3>
+  <p>
+    We capture the app's console log messages. These are the technical
+    notes the app writes about itself while it runs, and they help us
+    track down bugs.
+  </p>
 
   <h2>How we use it</h2>
   <ul>
     <li><strong>To run the game.</strong> Your email and media power core gameplay.</li>
-    <li><strong>To improve the app.</strong> Usage data tells us what to build next.</li>
-    <li><strong>To squash bugs.</strong> Crash reports help us keep your day smooth.</li>
+    <li><strong>To improve the app.</strong> Usage data and recordings tell us what to build next.</li>
+    <li><strong>To squash bugs.</strong> Error reports, recordings, and logs help us keep your day smooth.</li>
   </ul>
 
   <div class="callout">
@@ -76,15 +141,16 @@ import LegalPage from '@/components/LegalPage.astro';
   <h2>How long we keep it</h2>
   <p>
     As long as we need it to run the service. Photos and videos are
-    retained for the duration of your game event. You can ask us to delete
-    your data at any time. See contact info below.
+    retained for the duration of your game event. Session recordings are
+    kept for 30 days. You can ask us to delete your data at any time. See
+    contact info below.
   </p>
 
   <h2>Third-party services</h2>
   <ul>
     <li><strong>Supabase</strong> · database and file storage</li>
-    <li><strong>PostHog</strong> · anonymous product analytics</li>
-    <li><strong>Sentry</strong> · error tracking and crash reporting</li>
+    <li><strong>PostHog</strong> · product analytics, session recordings, and heatmaps (US cloud)</li>
+    <li><strong>Sentry</strong> · error tracking, crash reporting, and performance monitoring</li>
   </ul>
   <p>Each has its own privacy policy governing how they handle data.</p>
 
