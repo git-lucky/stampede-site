@@ -1,5 +1,7 @@
 # Deploying the Stampede site
 
+Repository: `git-lucky/stampede-site` (renamed from `urbansafari-site` in October 2026; GitHub redirects the old URL).
+
 Production is **https://stampede.quest** (and `www`), served by the Cloudflare Pages project
 `stampede-site` in Tim@itsybits.io's Cloudflare account (`stampede-site-7rx.pages.dev`).
 
@@ -22,9 +24,9 @@ restore a `wrangler pages deploy dist --project-name=stampede-site` step.
 
 ## The old address
 
-`urbansafari.app` and `www.urbansafari.app` (zone and Pages project `urbansafari-site` in Mike's Cloudflare
-account) serve only a permanent redirect to the same path on `stampede.quest`, for twelve months from
-October 2026. Don't deploy this site to `urbansafari-site`: that would replace the redirect.
+`urbansafari.app` and `www.urbansafari.app` 301 to the same path on `stampede.quest` through a Cloudflare
+Redirect Rule in the urbansafari.app zone (Mike's Cloudflare account), kept for twelve months from October
+2026. The old Pages project there, `urbansafari-site`, no longer receives deploys.
 
 ## Verify a deploy
 
