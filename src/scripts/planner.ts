@@ -119,8 +119,8 @@ if (planForm) {
   function emailDraft() {
     const rows = summaryRows();
     const city = rows.find(([k]) => k === 'City')?.[1] || '';
-    const body = `Hi Mike,\n\nI’d like to plan an Urban Safari.\n\n${rows.map(([k, v]) => `${k}: ${v}`).join('\n')}\n`;
-    return `mailto:${email}?subject=${encodeURIComponent(`Urban Safari inquiry: ${city}`)}&body=${encodeURIComponent(body)}`;
+    const body = `Hi Mike,\n\nI’d like to plan a Stampede.\n\n${rows.map(([k, v]) => `${k}: ${v}`).join('\n')}\n`;
+    return `mailto:${email}?subject=${encodeURIComponent(`Stampede inquiry: ${city}`)}&body=${encodeURIComponent(body)}`;
   }
 
   const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -174,7 +174,7 @@ if (planForm) {
     form.querySelector('input')?.focus();
   });
   document.querySelector('[data-copy-summary]')?.addEventListener('click', async () => {
-    const text = `Urban Safari expedition request (to ${email})\n` + summaryRows().map(([k, v]) => `${k}: ${v}`).join('\n');
+    const text = `Stampede expedition request (to ${email})\n` + summaryRows().map(([k, v]) => `${k}: ${v}`).join('\n');
     try {
       await navigator.clipboard.writeText(text);
       copyMsg.textContent = 'Summary copied.';

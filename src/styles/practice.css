@@ -1,7 +1,7 @@
 /* "How a hunt plays" with one practice phone in the Expedition Passport look.
    Loaded after site.css. The phone follows Tim's draft player redesign
    (huntstack-game origin/redesign/player: PassportBoardHeader, PassportChallengeRow, Coin, Stamp,
-   passportCardStyles) in the Urban Safari skin, derived from blue #174F6B and gold #E9BE4F. */
+   passportCardStyles) in the Stampede skin, derived from blue #174F6B and gold #E9BE4F. */
 
 /* The passport app's own weights (Tim's app loads these from @expo-google-fonts) */
 @font-face{font-family:"Overpass";src:url("/fonts/Overpass-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}

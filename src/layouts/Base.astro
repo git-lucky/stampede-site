@@ -24,7 +24,7 @@ const {
   active,
 } = Astro.props;
 
-const siteName = 'Urban Safari';
+const siteName = 'Stampede';
 const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const home = Astro.url.pathname === '/';
