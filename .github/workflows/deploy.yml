@@ -1,20 +1,16 @@
-name: Deploy to Cloudflare Pages
+name: Build
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
-concurrency:
-  group: pages-production
-  cancel-in-progress: true
-
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      deployments: write
     steps:
       - uses: actions/checkout@v4
 
@@ -29,9 +25,3 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-
-      - uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=urbansafari-site
