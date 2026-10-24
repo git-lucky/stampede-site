@@ -1,6 +1,6 @@
 # Atlas — Mascot Spec
 
-Atlas is the Urban Safari elephant. A cute, round, bipedal little expedition buddy who shows up across the site in different poses, each tied to a specific moment in the customer journey. Inspiration reference: the way PostHog uses their hedgehog — a recurring cast member, not wallpaper.
+Atlas is the Stampede elephant. A cute, round, bipedal little expedition buddy who shows up across the site in different poses, each tied to a specific moment in the customer journey. Inspiration reference: the way PostHog uses their hedgehog — a recurring cast member, not wallpaper.
 
 This doc is the source of truth for every Atlas pose the site expects. The site already renders placeholders (dashed-circle boxes with the pose slug baked in). When real illustrations are ready, drop a file at `website/public/mascot/{slug}.svg` (or `.png`) and update `src/components/Mascot.astro` to swap the placeholder for an `<img>` tag.
 
@@ -118,9 +118,9 @@ Every pose used on the site must appear here. If a new location needs a pose, ad
 - **Aspect:** 1:1.
 
 ### `atlas-clapper`
-- **Where:** Tiers → **Urban Safari** card (size `md`); also appears in Outcomes row 3.
+- **Where:** Tiers → **Stampede** card (size `md`); also appears in Outcomes row 3.
 - **Description:** Atlas in director-style posture with a film clapperboard held open in his trunk. Optional beret for flair.
-- **Prop:** clapperboard (`"URBAN SAFARI — TAKE 1"`), optional beret.
+- **Prop:** clapperboard (`"STAMPEDE — TAKE 1"`), optional beret.
 - **Vibe:** "Roll camera, this is the big one." Cinematic, signature tier.
 - **Aspect:** 1:1.
 

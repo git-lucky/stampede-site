@@ -1,6 +1,6 @@
-# Urban Safari — Marketing Site
+# Stampede — Marketing Site
 
-Static marketing site for Urban Safari, built with [Astro](https://astro.build) and deployed to Cloudflare Pages.
+Static marketing site for Stampede, built with [Astro](https://astro.build) and deployed to Cloudflare Pages.
 
 ## Stack
 
@@ -41,7 +41,7 @@ The Hybrid 04 design, with Tim's Expedition Passport palette and type.
 
 - Palette: blue `#174F6B`, deep blue `#0E3447`, gold buttons `#E9BE4F`, foil gold text `#E4C77C`, pale paper `#E7EEE9`, light print `#F7F9F7` (tokens in `:root` of `site.css`).
 - Rounded squares are the motif (checkpoints, step numbers, icon tiles). Paper sections use the wave pattern; blue "leather" sections add grain.
-- Header: the game's geometric elephant left of "Urban Safari". Footer: the gold-and-green Safari Warrior coin and "See you out there."
+- Header: the game's geometric elephant left of "Stampede". Footer: the gold-and-green Safari Warrior coin and "See you out there."
 
 ## Behavior notes
 
