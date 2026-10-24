@@ -162,14 +162,14 @@ Using the provided Atlas reference, generate Atlas standing bipedal in three-qua
 
 ---
 
-### 9. `atlas-clapper` · Urban Safari tier card
+### 9. `atlas-clapper` · Stampede tier card
 
 **Description:** Atlas as a film director holding a clapperboard open, optional beret for flair.
 
 **Prompt:**
 
 ```
-Using the provided Atlas reference, generate Atlas standing bipedal in three-quarter view with a slight lean forward, wearing a small outlined beret tilted jauntily to one side (beret fill: forest #1F3A2B). His trunk holds an open film clapperboard in front of his belly. The clapperboard has a forest #1F3A2B body, a cream #FAF5E9 write-on area with the forest-ink text "URBAN SAFARI" on the first line and "TAKE 1" on the second line in a bold sans display font, and gold #EAB72D diagonal stripes along the clapper arm. Expression: confident grin with teeth and a little pink tongue just barely showing, one eyebrow raised, big sparkly eyes. Smooth unpatterned body in the canonical teal→lavender blend.
+Using the provided Atlas reference, generate Atlas standing bipedal in three-quarter view with a slight lean forward, wearing a small outlined beret tilted jauntily to one side (beret fill: forest #1F3A2B). His trunk holds an open film clapperboard in front of his belly. The clapperboard has a forest #1F3A2B body, a cream #FAF5E9 write-on area with the forest-ink text "STAMPEDE" on the first line and "TAKE 1" on the second line in a bold sans display font, and gold #EAB72D diagonal stripes along the clapper arm. Expression: confident grin with teeth and a little pink tongue just barely showing, one eyebrow raised, big sparkly eyes. Smooth unpatterned body in the canonical teal→lavender blend.
 ```
 
 ---

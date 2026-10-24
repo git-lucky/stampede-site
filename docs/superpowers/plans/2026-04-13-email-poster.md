@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a `/poster` page — a print-to-PDF promotional flyer with QR code and demo URL, matching the Urban Safari brand system.
+**Goal:** Build a `/poster` page — a print-to-PDF promotional flyer with QR code and demo URL, matching the Stampede brand system.
 
 **Architecture:** Minimal `Poster.astro` layout (no nav/footer, just global CSS + fonts) used by a single `poster.astro` page. Static asset (QR image) moved from `src/components/emailPoster/` to `public/emailPoster/`. All print styles scoped inside the page's `<style>` block with `@media print` as the primary output target.
 
@@ -59,7 +59,7 @@ interface Props {
   title?: string;
 }
 
-const { title = 'Try Urban Safari Free — Demo' } = Astro.props;
+const { title = 'Try Stampede Free — Demo' } = Astro.props;
 ---
 
 <!doctype html>
@@ -69,7 +69,7 @@ const { title = 'Try Urban Safari Free — Demo' } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>{title}</title>
-    <link rel="icon" href="/urban-safari-logo.png" />
+    <link rel="icon" href="/stampede-logo.png" />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link
       rel="stylesheet"
@@ -128,8 +128,8 @@ import Mascot from '@/components/Mascot.astro';
     <!-- Logo -->
     <img
       class="logo rise rise-1"
-      src="/urban-safari-logo.png"
-      alt="Urban Safari"
+      src="/stampede-logo.png"
+      alt="Stampede"
       width="140"
       height="140"
     />
@@ -138,7 +138,7 @@ import Mascot from '@/components/Mascot.astro';
     <p class="eyebrow rise rise-2">Demo Experience</p>
 
     <!-- Headline -->
-    <h1 class="headline rise rise-3">Try Urban Safari Free</h1>
+    <h1 class="headline rise rise-3">Try Stampede Free</h1>
 
     <!-- Subhead -->
     <p class="subhead rise rise-4">
@@ -154,7 +154,7 @@ import Mascot from '@/components/Mascot.astro';
     <div class="qr-card rise rise-5">
       <img
         src="/emailPoster/qr-demo.png"
-        alt="QR code — scan to join the Urban Safari demo"
+        alt="QR code — scan to join the Stampede demo"
         width="220"
         height="220"
         class="qr-img"

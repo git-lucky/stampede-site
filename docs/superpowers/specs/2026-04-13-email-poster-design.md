@@ -3,7 +3,7 @@
 
 ## Context
 
-Urban Safari needs a promotional flyer to promote the demo experience at `hunt.urbansafari.app/join/demo123`. The flyer will be **exported as a PDF and sent as an email attachment**. The workflow: user visits `/poster` → browser print (Cmd+P) → Save as PDF → attach to email. Print fidelity is the top priority; the web experience is secondary. The flyer contains a QR code and the demo URL written out below it so recipients can scan or type the link.
+Stampede needs a promotional flyer to promote the demo experience at `hunt.urbansafari.app/join/demo123`. The flyer will be **exported as a PDF and sent as an email attachment**. The workflow: user visits `/poster` → browser print (Cmd+P) → Save as PDF → attach to email. Print fidelity is the top priority; the web experience is secondary. The flyer contains a QR code and the demo URL written out below it so recipients can scan or type the link.
 
 ---
 
@@ -23,9 +23,9 @@ A new page at `/poster` that renders as a single-column, centered promotional fl
 
 ## Layout (top to bottom)
 
-1. **Logo** — `urban-safari-logo.png`, centered, ~140px wide
+1. **Logo** — `stampede-logo.png`, centered, ~140px wide
 2. **Eyebrow** — `DEMO EXPERIENCE` in `.eyebrow` style (JetBrains Mono, moss green, small caps)
-3. **Headline** — `Try Urban Safari Free` — Cabinet Grotesk 800, `--forest`, ~`--step-4`
+3. **Headline** — `Try Stampede Free` — Cabinet Grotesk 800, `--forest`, ~`--step-4`
 4. **Subhead** — `City-wide team building your crew will actually talk about.` — Satoshi, `--forest-soft`, `--step-0`
 5. **Atlas mascot** — `atlas-celebrate` pose, `lg` size (240px), centered, `drift` animation
 6. **QR code card** — stamp-bordered card (`--stamp-border`, `--stamp-shadow`), centered, QR image ~220px square, white background inside card
@@ -57,7 +57,7 @@ No CTA button — the QR code and written URL are the only call to action. This 
 New minimal layout: `src/layouts/Poster.astro`
 - Loads global CSS (fonts, tokens, grain) 
 - No Nav, no Footer
-- Sets `<title>Try Urban Safari Free — Demo`
+- Sets `<title>Try Stampede Free — Demo`
 - `<body>` has `background: var(--cream)` and centers the `.poster-wrap` column
 
 New page: `src/pages/poster.astro`

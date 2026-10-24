@@ -1,4 +1,4 @@
-# Deploying Urban Safari to Cloudflare Pages
+# Deploying Stampede to Cloudflare Pages
 
 Production lives at **https://urbansafari.app**, served from the Cloudflare Pages project `urbansafari-site`. Deploys run automatically via GitHub Actions on every push to `main`.
 
