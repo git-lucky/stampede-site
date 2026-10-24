@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://urbansafari.app/sitemap.xml
+Sitemap: https://stampede.quest/sitemap.xml
