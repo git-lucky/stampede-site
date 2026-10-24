@@ -1,5 +1,5 @@
 ---
-// Footer: the gold-and-green Safari Warrior coin beside Urban Safari, and "See you out there."
+// Footer: the gold-and-green Safari Warrior coin beside Stampede, and "See you out there."
 import RecapInvitation from '@/components/RecapInvitation.astro';
 import { contact } from '@/content/contact';
 
@@ -9,21 +9,21 @@ interface Props {
 const { home = false } = Astro.props;
 const base = home ? '' : '/';
 const year = new Date().getFullYear();
-const microprint = 'URBANSAFARIEXPEDITION'.repeat(32);
+const microprint = 'STAMPEDEEXPEDITION'.repeat(32);
 ---
 <footer class="site-foot leather" id="site-footer">
   <div class="wrap"><h2 class="footer-goodbye">See you out there.</h2></div>
   <div class="wrap foot-in">
     <div class="footer-brand-group">
-      <a class="footer-coin" href={home ? '#top' : '/'} aria-label={home ? 'Urban Safari, back to top' : 'Urban Safari, home'}><img src="/img/safari-warrior-coin.webp" width="112" height="112" alt="Gold-and-green Safari Warrior coin" loading="lazy" /></a>
+      <a class="footer-coin" href={home ? '#top' : '/'} aria-label={home ? 'Stampede, back to top' : 'Stampede, home'}><img src="/img/safari-warrior-coin.webp" width="112" height="112" alt="Gold-and-green Safari Warrior coin" loading="lazy" /></a>
       <div>
-        <a class="wordmark" href={home ? '#top' : '/'}>Urban Safari</a>
+        <a class="wordmark" href={home ? '#top' : '/'}>Stampede</a>
         <p class="foot-line">Team scavenger hunts in your own city.</p>
         <p class="foot-contact"><a href={contact.phoneHref}>{contact.phone}</a><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
       </div>
     </div>
     <a class="footer-review" href={contact.googleReview} target="_blank" rel="noopener noreferrer">
-      <img class="footer-review-qr" src="/google-review-qr.svg" width="88" height="88" alt="Scan to review Urban Safari on Google" loading="lazy" />
+      <img class="footer-review-qr" src="/google-review-qr.svg" width="88" height="88" alt="Scan to review us on Google" loading="lazy" />
       <span class="footer-review-text">
         <span class="footer-review-head"><img src="/review-logos/google-g.png" width="24" height="24" alt="" loading="lazy" /><span class="footer-review-stars" aria-hidden="true">★★★★★</span></span>
         <span class="footer-review-label">Review us on Google <span aria-hidden="true">↗</span></span>
@@ -39,7 +39,7 @@ const microprint = 'URBANSAFARIEXPEDITION'.repeat(32);
   {home && <RecapInvitation />}
   <p class="microprint" aria-hidden="true">{microprint}</p>
   <div class="wrap foot-bottom">
-    <nav class="foot-more" aria-label="More from Urban Safari">
+    <nav class="foot-more" aria-label="More from Stampede">
       <a href="/cities/">Cities</a>
       <a href="/support/">Help and support</a>
       <a href="/privacy/">Privacy</a>

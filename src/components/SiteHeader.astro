@@ -1,5 +1,5 @@
 ---
-// Sticky header: the game's geometric elephant left of "Urban Safari".
+// Sticky header: the game's geometric elephant left of "Stampede".
 // On the homepage the section links are in-page anchors; elsewhere they lead back to it.
 interface Props {
   home?: boolean;
@@ -11,9 +11,9 @@ const current = (key: Props['active']) => (active === key ? 'page' : undefined);
 ---
 <header class="site-head" id="top">
   <div class="head-in">
-    <a class="wordmark header-brand" href={home ? '#top' : '/'} aria-label={home ? 'Urban Safari, back to top' : 'Urban Safari, home'}>
+    <a class="wordmark header-brand" href={home ? '#top' : '/'} aria-label={home ? 'Stampede, back to top' : 'Stampede, home'}>
       <span class="header-elephant header-elephant-clear"><img src="/img/game-elephant.png" width="52" height="52" alt="" /></span>
-      <span class="header-brand-name">Urban Safari</span>
+      <span class="header-brand-name">Stampede</span>
     </a>
     <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" data-menu>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>

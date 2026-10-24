@@ -18,7 +18,7 @@ interface Props {
 const { city } = Astro.props;
 const cityLabel = `${city.name}, ${city.state}`;
 const title = `${cityLabel} team building scavenger hunts`;
-const description = `${city.description} Plan a city-wide Urban Safari for teams of 10 to 200+ in ${cityLabel}.`;
+const description = `${city.description} Plan a city-wide Stampede for teams of 10 to 200+ in ${cityLabel}.`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const planHref = `/plan/?${new URLSearchParams({ city: cityLabel })}`;
 
@@ -26,11 +26,11 @@ const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: `Urban Safari team building in ${cityLabel}`,
+    name: `Stampede team building in ${cityLabel}`,
     serviceType: 'Corporate team building scavenger hunt',
     provider: {
       '@type': 'Organization',
-      name: 'Urban Safari',
+      name: 'Stampede',
       url: Astro.site?.toString(),
       telephone: '+1-405-437-4597',
       email: contact.email,

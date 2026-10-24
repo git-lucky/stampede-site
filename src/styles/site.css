@@ -1,4 +1,4 @@
-/* Urban Safari website, Hybrid 04 design: homepage and shared parts.
+/* Stampede website, Hybrid 04 design: homepage and shared parts.
    Palette, type and pattern taken from Tim's Expedition Passport source
    (huntstack-game design/us-design-language @ 53666f9, mockups/passport/template.html). */
 
@@ -6,10 +6,10 @@
 @font-face{font-family:"Geologica";src:url("/fonts/Geologica-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
-  /* Tim's Urban Safari tokens */
+  /* Tim's Stampede tokens */
   --teal:#174F6B;          /* --b1, the leather */
   --teal-deep:#0E3447;     /* --b1-deep */
-  /* the divider between stacked items: Urban Safari blue tapering out to both ends, a band of gold at the center */
+  /* the divider between stacked items: Stampede blue tapering out to both ends, a band of gold at the center */
   --divider:linear-gradient(90deg,transparent,var(--teal) 26%,var(--teal) 41%,var(--gold) 42%,var(--gold) 58%,var(--teal) 59%,var(--teal) 74%,transparent);
   --gold:#E9BE4F;          /* --b2, buttons */
   --foil:#E4C77C;          /* foil lettering on leather */
