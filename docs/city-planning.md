@@ -1,6 +1,6 @@
 # Nationwide site and visitor-selected city planning
 
-Production is https://urbansafari.app/ on the existing Cloudflare Pages project `urbansafari-site`, branch `main`. Mike has authorized live shipping. Build with `pnpm build`, push the reviewed source to main, and verify the GitHub Actions deployment and live HTTP response. Do not run Playwright, local servers or previews unless Mike requests them.
+Production is https://stampede.quest/ on the Cloudflare Pages project `stampede-site`, branch `main` (see DEPLOY.md). Mike has authorized live shipping. Build with `pnpm build`, push the reviewed source to main, and verify the GitHub Actions deployment and live HTTP response. Do not run Playwright, local servers or previews unless Mike requests them.
 
 Owner correction, September 17, 2026: the main site represents Stampede nationwide. Homepage copy, metadata, navigation and planning links stay general for every visitor; do not personalize them from Cloudflare geography. The primary and mobile navigation link to `/cities/` so visitors choose a city for local information. Explicit `/cities/<slug>/` pages keep their requested city, and their `/plan/?city=` links preserve that city as an editable value, with a pencil that focuses/selects it. General planning links leave city selection to the visitor.
 
