@@ -17,15 +17,16 @@ import LegalPage from '@/components/LegalPage.astro';
 
   <h2>What we collect</h2>
 
-  <h3>Your team's email or phone number</h3>
+  <h3>Your team's email</h3>
   <p>
-    When you set up a team, the app may ask for one email address or phone
-    number for the whole team. Whether it asks depends on how the organizer
-    set up your game.
+    When you set up a team, the app may ask for an email address. Whether it
+    asks depends on how the organizer set up your game. (Games that started
+    before this change may have asked for an email or phone number instead.)
   </p>
   <p>
-    We use it only so your team can rejoin on another device (“Rejoin my
-    team”). We don't send it to our analytics or error-tracking tools.
+    If you add an email during setup, we use it only to send you a link to
+    get your team back into the game, and we delete it 30 days after the game
+    ends. We don't send it to our analytics or error-tracking tools.
   </p>
 
   <h3>Hosts and organizers: your email</h3>
@@ -160,6 +161,7 @@ import LegalPage from '@/components/LegalPage.astro';
   <h2>Third-party services</h2>
   <ul>
     <li><strong>Supabase</strong> · database and file storage</li>
+    <li><strong>Resend</strong> · sends the emails that get your team back into a game</li>
     <li><strong>PostHog</strong> · product analytics, session recordings, and heatmaps (US cloud)</li>
     <li><strong>Sentry</strong> · error tracking, crash reporting, and performance monitoring</li>
   </ul>
